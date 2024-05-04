@@ -1,11 +1,12 @@
+"use client"
 import { Button, Flex, Text } from "@radix-ui/themes";
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import {useRouter} from "next/navigation";
 
 export const BreadCrumbs = memo(() => {
-  const nav = useNavigate()
+  const {back} = useRouter()
   const handlerClick = () => {
-    nav(-1)
+      back()
   }
   return (
     <Flex align={"center"} gap={"4"}>

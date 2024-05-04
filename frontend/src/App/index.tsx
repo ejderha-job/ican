@@ -4,7 +4,7 @@ import "./index.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "../page/login/Login";
 import { Registr } from "../page/registr/ui/Registr";
-import { Intro } from "../page/intro/Intro";
+import { Intro } from "../app/intro/Intro";
 import { Header } from "../widget/header/Header";
 import ErrorPage from "./ErrorPage";
 import { SelectCategory } from "../page/createTask/step1";

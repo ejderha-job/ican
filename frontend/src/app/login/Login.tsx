@@ -1,3 +1,4 @@
+"use client"
 import {
   Button,
   Container,
@@ -9,13 +10,12 @@ import {
 } from "@radix-ui/themes";
 import Media from "../../../assets/login.svg";
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import {redirect} from "next/navigation";
 
 export const Login = memo(() => {
-  const nav = useNavigate()
 
   const handlerClick = () => {
-    nav("/")
+    redirect("/")
   }
 
   return (

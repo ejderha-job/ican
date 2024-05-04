@@ -17,7 +17,7 @@ export const Header = (props: HeaderProps) => {
           <Logo />
           <Location />
           <Lang />
-          <Link href="/create-task">Создать задание</Link>
+          <Link href="/createTask/step1">Создать задание</Link>
           <Link href="/tasks">Найти задание</Link>
           <Auth logged={hasLogged} />
           <Text>Theme</Text>

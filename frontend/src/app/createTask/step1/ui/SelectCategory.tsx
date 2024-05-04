@@ -1,5 +1,6 @@
+"use client"
 import { memo } from "react";
-import { BreadCrumbs } from "../../../../widget/BreadCrumbs/BreadCrumbs";
+import { BreadCrumbs } from "widget/BreadCrumbs/BreadCrumbs";
 import {
   Box,
   Container,
@@ -10,7 +11,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { TaskCard } from "./TaskCard";
-import { useNavigate } from "react-router-dom";
+import {redirect} from "next/navigation";
 
 const items = [
   { icon: null, text: "Курьерские услуги", id: 3 },
@@ -30,10 +31,9 @@ const subItems = [
 ];
 
 export const SelectCategory = memo(() => {
-  const nav = useNavigate();
 
   const handlerSelectCategory = (subCategoryId: number) => () => {
-    nav(`/create-task/${subCategoryId}`);
+    redirect(`/create-task/${subCategoryId}`);
   };
 
   return (

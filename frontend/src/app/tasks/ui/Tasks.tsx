@@ -1,3 +1,4 @@
+"use client"
 import { memo } from "react";
 import { Header } from "./Header";
 import { Container, Flex, Text, Select } from "@radix-ui/themes";

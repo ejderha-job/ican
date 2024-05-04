@@ -1,8 +1,8 @@
 import { Badge, Box, Card, Flex, Heading, Separator, Text } from "@radix-ui/themes";
 import { memo } from "react";
-import Camera from "../assets/camera.svg";
+import Camera from "../../../app/tasks/assets/camera.svg";
 
-export const Task = memo(() => {
+export const TaskLine = memo(() => {
   return (
     <Card>
       <Flex gap={"4"}>
