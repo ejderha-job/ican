@@ -12,7 +12,7 @@ export const Auth = memo((props: AuthProps) => {
   }
   return (
     <div>
-      <Link href="/login">Вход</Link> или <Link href="/register">регистрация</Link>
+      <Link href="/login">Вход</Link> или <Link href="/registr">регистрация</Link>
     </div>
   );
 });

@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { Box, Flex, Theme } from "@radix-ui/themes";
+import { Flex, Theme } from "@radix-ui/themes";
 import "./index.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "../page/login/Login";
