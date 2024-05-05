@@ -17,7 +17,7 @@ export default function Page() {
             onSwiper={(swiper) => console.log(swiper)}
         >
             {tasks.map(task => <SwiperSlide>
-                <TaskCard />
+                <TaskCard author={""} description={""} price={0} title={""}/>
             </SwiperSlide>)}
         </Swiper>
     </Container>

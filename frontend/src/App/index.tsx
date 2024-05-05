@@ -2,15 +2,15 @@ import { createRoot } from "react-dom/client";
 import { Flex, Theme } from "@radix-ui/themes";
 import "./index.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Login } from "../page/login/Login";
-import { Registr } from "../page/registr/ui/Registr";
-import { Intro } from "../app/intro/Intro";
-import { Header } from "../widget/header/Header";
+import { Login } from "app/login/Login";
+import { Registr } from "app/registr/ui/Registr";
+import { default as Intro } from "app/page";
+import { Header } from "widget/header/Header";
 import ErrorPage from "./ErrorPage";
-import { SelectCategory } from "../page/createTask/step1";
-import { Footer } from "../widget/Footer/Footer";
-import { CreateTask } from "../page/createTask/step2";
-import { Tasks } from "../page/tasks";
+import { SelectCategory } from "app/createTask/step1";
+import { Footer } from "widget/Footer/Footer";
+import { CreateTask } from "app/createTask/step2";
+import { default as Tasks } from "app/tasks/page";
 
 const rootElement = document.getElementById("root");
 
