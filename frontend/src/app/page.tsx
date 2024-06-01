@@ -1,24 +1,12 @@
-"use client"
 import {Container, Heading} from "@radix-ui/themes";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import {TaskCard} from "entity/Task";
+import {TasksSlider} from "./intro/ui/TasksSlider";
+import axios from "axios";
 
-const tasks = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
-
-export default function Page() {
+export default async function Intro() {
+    const tasks = (await axios.get('http://backend:9000/tasks')).data
     return <Container flexGrow={"1"} pt={"70px"}>
         <Heading>Рядом с вами:</Heading>
         <Heading>Свежие:</Heading>
-        <Swiper
-            spaceBetween={50}
-            slidesPerView={3}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-        >
-            {tasks.map(task => <SwiperSlide>
-                <TaskCard author={""} description={""} price={0} title={""}/>
-            </SwiperSlide>)}
-        </Swiper>
+        <TasksSlider tasks={tasks}/>
     </Container>
 }

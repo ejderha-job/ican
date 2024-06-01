@@ -1,12 +1,16 @@
-import {memo} from "react";
 import {Select} from "@radix-ui/themes";
 
-export const Location = memo(() => {
-    return <Select.Root defaultValue="apple">
-        <Select.Trigger />
+interface LocationProps {
+    locationID: number
+}
+
+export const Location = (props: LocationProps) => {
+    const {locationID} = props
+    const cities = []
+    return <Select.Root defaultValue={String(locationID)}>
+        <Select.Trigger/>
         <Select.Content>
-            <Select.Item value="apple">Москва</Select.Item>
-            <Select.Item value="orange">СПБ</Select.Item>
+            {cities?.map(city => <Select.Item value={String(city.id)}>{city.title}</Select.Item>)}
         </Select.Content>
     </Select.Root>
-})
+}

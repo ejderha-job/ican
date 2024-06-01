@@ -2,4 +2,4 @@ FROM node:alpine
 WORKDIR /app
 COPY . .
 RUN npm i
-CMD ["npm", "run", "build"]
+CMD ["npm", "run", "dev"]

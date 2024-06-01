@@ -45,8 +45,8 @@ export const SelectCategory = memo(() => {
             <Text>Ищите работу? Просмотр заданий</Text>
           </Flex>
           <Grid columns="3" gap="3" rows="3">
-            {items.map((item) => (
-              <TaskCard icon={item.icon} text={item.text} />
+            {items.map((item, index) => (
+              <TaskCard icon={item.icon} text={item.text} key={index}/>
             ))}
           </Grid>
         </Flex>
@@ -56,7 +56,7 @@ export const SelectCategory = memo(() => {
         </Box>
         <Grid columns="3" gap="3" rows="repeat(2, 64px)" pt={"4"}>
           {subItems.map((el) => (
-            <Text onClick={handlerSelectCategory(el.id)}>{el.text}</Text>
+            <Text onClick={handlerSelectCategory(el.id)} key={el.id}>{el.text}</Text>
           ))}
         </Grid>
       </Container>

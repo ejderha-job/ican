@@ -1,6 +1,8 @@
 up:
-	sudo docker compose up
+	docker compose up
 down:
-	sudo docker compose down
+	docker compose down
 clear:
-	sudo docker image rm $(sudo docker image list -q)
+	docker image rm $(docker image list -q)
+lint:
+	cd frontend && bun lint

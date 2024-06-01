@@ -12,7 +12,7 @@ export const BreadCrumbs = memo(() => {
     <Flex align={"center"} gap={"4"}>
       <Button onClick={handlerClick}>Вернуться назад</Button>
       <Flex>
-        <Text>Главная > Выбрать категорию</Text>
+        <Text>Главная {">"} Выбрать категорию</Text>
       </Flex>
     </Flex>
   );

@@ -7,8 +7,8 @@ const tasks = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
 export const TasksList = memo(() => {
   return (
     <Flex direction={"column"} gap={"4"}>
-      {tasks.map((task) => (
-        <TaskLine />
+      {tasks.map((task, index) => (
+        <TaskLine key={index}/>
       ))}
     </Flex>
   );

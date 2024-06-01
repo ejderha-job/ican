@@ -1,3 +1,4 @@
+"use server"
 import { Container, Flex, Link, Text } from "@radix-ui/themes";
 import { Logo } from "../logo/Logo";
 import { Location, Lang, Auth } from "entity";
@@ -15,7 +16,7 @@ export const Header = (props: HeaderProps) => {
       <Container height={"66px"}>
         <Flex justify={"between"} height={"100%"} align={"center"}>
           <Logo />
-          <Location />
+          <Location locationID={1}/>
           <Lang />
           <Link href="/createTask/step1">Создать задание</Link>
           <Link href="/tasks">Найти задание</Link>

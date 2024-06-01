@@ -105,7 +105,7 @@ const Category = memo((props: CategoryProps) => {
         </Box>
         <Item title={title} checked={items.every((item) => item.checked)} />
       </Flex>
-      <Box>{isOpen && items.map((item) => <Item {...item} />)}</Box>
+      <Box>{isOpen && items.map((item, index) => <Item {...item} key={index} />)}</Box>
     </Flex>
   );
 });
@@ -113,8 +113,8 @@ const Category = memo((props: CategoryProps) => {
 export const Filter = memo(() => {
   return (
     <Box width={"400px"}>
-      {categories.map((category) => (
-        <Category items={category.items} title={category.title} />
+      {categories.map((category, index) => (
+        <Category items={category.items} title={category.title} key={index}/>
       ))}
     </Box>
   );

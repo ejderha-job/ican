@@ -1,1 +1,1 @@
-cd frontend && echo \”[Husky] pre-commit\”
+make lint
