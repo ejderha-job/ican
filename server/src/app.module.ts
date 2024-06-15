@@ -5,24 +5,18 @@ import { CategoriesModule } from './categories/categories.module';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import {dataSource} from "./db/ormconfig";
+import { SubcategoriesModule } from './subcategories/subcategories.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type:'postgres',
-      host: 'db',
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
-      port: 5432,
-      entities: ["**/*.entity{ .ts,.js}"],
-      synchronize: true
-    }),
+    TypeOrmModule.forRoot(dataSource),
     CountriesModule,
     CategoriesModule,
     TasksModule,
     AuthModule,
     UsersModule,
+    SubcategoriesModule,
   ],
 })
 export class AppModule {}

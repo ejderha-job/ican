@@ -1,11 +1,9 @@
-"use client"
-import { memo } from "react";
 import { Header } from "./Header";
 import { Container, Flex, Text, Select } from "@radix-ui/themes";
 import { TasksList } from "./TasksList";
 import { Filter } from "./Filter";
 
-export const Tasks = memo(() => {
+export const Tasks = async () => {
   return (
     <Flex direction={"column"} gap={"4"} flexGrow={"1"}>
       <Header />
@@ -29,4 +27,4 @@ export const Tasks = memo(() => {
       </Container>
     </Flex>
   );
-});
+}

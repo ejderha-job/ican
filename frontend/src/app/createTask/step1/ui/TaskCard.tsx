@@ -3,8 +3,6 @@ import { memo } from "react";
 import TaskIcon from "../assets/task-icon.svg";
 
 interface TaskCardProps {
-  text: string;
-  icon: any;
 }
 
 export const TaskCard = memo((props: TaskCardProps) => {

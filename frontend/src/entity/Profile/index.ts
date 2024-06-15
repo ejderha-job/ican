@@ -1,0 +1,1 @@
+export {setToken, token} from './model/store'

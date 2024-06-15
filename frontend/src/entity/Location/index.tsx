@@ -1,1 +1,2 @@
-export {Location} from './ui/Location'
+import Location from './ui/Location'
+export { Location }

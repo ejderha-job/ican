@@ -1,14 +1,13 @@
+"use client"
 import { Link } from "@radix-ui/themes";
 import { memo } from "react";
+import {useUnit} from "effector-react";
+import {token} from "../Profile";
 
-interface AuthProps {
-  logged: boolean;
-}
-
-export const Auth = memo((props: AuthProps) => {
-  const { logged } = props;
+export const Auth = memo(() => {
+  const logged = useUnit(token)
   if (logged) {
-    return <div>Auth</div>;
+    return <div>Profile</div>;
   }
   return (
     <div>

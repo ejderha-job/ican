@@ -9,11 +9,10 @@ export class CategoriesService {
     constructor(@InjectRepository(Categories) private categoriesRepository: Repository<Categories>) {
     }
     async getAllCategories(){
-        return await this.categoriesRepository.find()
+        return await this.categoriesRepository.find({relations:{subcategories:true}})
     }
     async createCategory(category:CategoriesDto){
         const newCategory = new Categories()
-        newCategory.tasks = []
         newCategory.name = category.name
         return await this.categoriesRepository.save(newCategory)
     }

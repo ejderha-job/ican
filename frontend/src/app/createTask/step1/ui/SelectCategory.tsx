@@ -1,5 +1,5 @@
 "use client"
-import { memo } from "react";
+import {memo, useEffect, useState} from "react";
 import { BreadCrumbs } from "widget/BreadCrumbs/BreadCrumbs";
 import {
   Box,
@@ -12,14 +12,7 @@ import {
 } from "@radix-ui/themes";
 import { TaskCard } from "./TaskCard";
 import {redirect} from "next/navigation";
-
-const items = [
-  { icon: null, text: "Курьерские услуги", id: 3 },
-  { icon: null, text: "Курьерские услуги", id: 3 },
-  { icon: null, text: "Курьерские услуги", id: 4 },
-  { icon: null, text: "Курьерские услуги", id: 2 },
-  { icon: null, text: "Курьерские услуги", id: 1 },
-];
+import axios from "axios";
 
 const subItems = [
   { text: "Услуги пешего курьера", id: 2 },
@@ -31,10 +24,14 @@ const subItems = [
 ];
 
 export const SelectCategory = memo(() => {
-
+  const [categories, setCategories] = useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:9000/categories").then(data => setCategories(data.data))
+  },[])
   const handlerSelectCategory = (subCategoryId: number) => () => {
     redirect(`/create-task/${subCategoryId}`);
   };
+  console.log(categories)
 
   return (
       <Container flexGrow={"1"} pt={"70px"}>
@@ -45,8 +42,8 @@ export const SelectCategory = memo(() => {
             <Text>Ищите работу? Просмотр заданий</Text>
           </Flex>
           <Grid columns="3" gap="3" rows="3">
-            {items.map((item, index) => (
-              <TaskCard icon={item.icon} text={item.text} key={index}/>
+            {categories.map((item, index) => (
+              <TaskCard key={index}/>
             ))}
           </Grid>
         </Flex>

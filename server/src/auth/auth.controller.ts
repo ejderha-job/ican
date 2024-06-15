@@ -3,31 +3,39 @@ import {LocalAuthGuard} from "../guard/local-auth.guard";
 import {GithubAuthGuard} from "../guard/github-auth";
 import {AuthService} from "./auth.service";
 import {CreateUser} from "../dto";
+import {ApiExcludeEndpoint, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) {
     }
 
     @UseGuards(LocalAuthGuard)
+    @ApiOperation({summary: "login"})
+    @ApiResponse({status: 200, description: "jwt token"})
+    @ApiResponse({status: 401, description: "unauthorized"})
     @Post('login')
     async login(@Req() req) {
         return this.authService.login(req.user);
     }
 
+    @ApiOperation({summary: "register"})
     @Post('register')
-    async register(@Body() user:CreateUser) {
+    async register(@Body() user: CreateUser) {
         const userID = await this.authService.register(user);
         if (userID) return userID
         throw new HttpException("Не удалось создать пользователя", HttpStatus.BAD_REQUEST)
     }
 
+    @ApiOperation({summary: "login throw github"})
     @UseGuards(GithubAuthGuard)
     @Get('github')
     async getProfile(@Req() req) {
         return req.user
     }
 
+    @ApiExcludeEndpoint()
     @UseGuards(GithubAuthGuard)
     @Get('github/callback')
     async callback(@Req() req, @Res() res) {

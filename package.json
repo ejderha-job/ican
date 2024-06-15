@@ -11,9 +11,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/faker": "^6.6.9",
     "husky": "^9.0.11"
   },
   "dependencies": {
-    "typeorm-seeding": "^1.6.1"
+    "@faker-js/faker": "^8.4.1"
   }
 }

@@ -1,3 +1,4 @@
+'use client'
 import { Box, Checkbox, Flex, Text } from "@radix-ui/themes";
 import { memo, useState } from "react";
 import Collapse from "../assets/collapse.svg";
