@@ -17,18 +17,20 @@ export class TasksService {
 
     async getTasks() {
         const data = await this.tasksRepository.find()
-        console.log(data)
         return data
     }
+
 
     async createTasks(task: createTaskDTO, userID: number) {
         const Subcategory = await this.subcategoriesService.findOne(task.categoryID)
         if (!Subcategory) throw new HttpException('Category not found', HttpStatus.BAD_REQUEST)
         const newTask = new Tasks()
-        newTask.props.name = task.task.name
+        newTask.props = {
+            name:task.task.name,
+            price:task.task.price,
+            description:task.task.description
+        }
         newTask.Subcategory = Subcategory
-        newTask.props.price = task.task.price
-        newTask.props.description = task.task.description
         newTask.user = await this.usersService.findById(userID)
         return await this.tasksRepository.save(newTask)
     }

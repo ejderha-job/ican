@@ -1,6 +1,6 @@
 import {Avatar, Box, Button, Card, Flex, Separator, Strong, Text} from "@radix-ui/themes";
 
-export const TaskSecondary = () => {
+export const TaskSecondary = (props) => {
     const onClick = () => {
     }
     return <Card onClick={onClick}>
@@ -14,13 +14,13 @@ export const TaskSecondary = () => {
                     <Flex align={"center"} justify={"between"}>
                         <Flex direction={"column"}>
                             <Text size={"2"} color={"gray"} weight={"light"}>Кузнецов Сергей</Text>
-                            <Text size={"4"} weight={"bold"}>Настроить vpn server</Text>
+                            <Text size={"4"} weight={"bold"}>{props.name}</Text>
                         </Flex>
-                        <Button>20000</Button>
+                        <Button>{props.price}</Button>
                     </Flex>
                     <Separator size={"4"}/>
                     <Text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consequat commodo turpis suscipit aliquet. Sed dapibus dignissim maximus. Nunc vitae ipsum vel purus ultricies pharetra egestas id libero. Ut laoreet commodo dolor at accumsan. Suspendisse sagittis mattis libero, aliquam mattis tortor dictum id. Cras id scelerisque eros. Praesent semper, felis eu vestibulum ultrices, erat lorem iaculis tellus, et ultrices leo erat in diam. Duis facilisis, felis quis consectetur aliquam, orci nibh accumsan nulla, vitae volutpat dui libero sit amet leo.
+                        {props.description}
                     </Text>
                 </Flex>
             </Flex>

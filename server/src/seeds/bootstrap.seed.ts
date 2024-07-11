@@ -1,12 +1,16 @@
 import {Factory, Seeder} from "typeorm-seeding";
 import {Categories} from "../categories/categories.entity";
-import {Connection} from "typeorm";
+import {Subcategories} from "../subcategories/subcategories.entity";
+import {Users} from "../users/users.entity";
+import {Tasks} from "../tasks/tasks.entity";
 import {Countries} from "../countries/countries.entity";
 
 const items = [
     {
         title: "Курьерские услуги",
-        subcategories: ["Услуги пешего курьера", "Услуги курьера на легковом авто", "Купить и доставить", "Другая посылка"]
+        subcategories: [
+            "Услуги пешего курьера",
+            "Услуги курьера на легковом авто", "Купить и доставить", "Другая посылка"]
     },
     {
         title: "Репетиторы и обучение",
@@ -53,8 +57,16 @@ const items = [
     }
 ]
 
-export default class BootstrapSeed implements Seeder {
+export default class CreateCategories implements Seeder {
     public async run(factory: Factory): Promise<any> {
-        factory(Categories)().create({})
+        const user = await factory(Users)().create({tasks:[]})
+        await factory(Countries)().createMany(10)
+        await Promise.all(items.map(async item => {
+            const NewCategory = await factory(Categories)().create({subcategories:[], name:item.title})
+            await Promise.all(item.subcategories.map(async subitem => {
+                const NewSubcategory = await factory(Subcategories)().create({title:subitem, category:NewCategory, tasks:[]})
+                const NewTask = await factory(Tasks)().create({Subcategory:NewSubcategory, user})
+            }))
+        }))
     }
 }

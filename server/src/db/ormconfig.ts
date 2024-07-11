@@ -1,4 +1,4 @@
-import {DataSourceOptions} from "typeorm";
+import {DataSource, DataSourceOptions} from "typeorm";
 
 export const dataSource:DataSourceOptions = {
     type:'postgres',
@@ -15,3 +15,4 @@ export const dataSource:DataSourceOptions = {
 }
 
 export default dataSource
+// export default new DataSource(dataSource)

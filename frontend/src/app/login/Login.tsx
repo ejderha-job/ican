@@ -36,7 +36,7 @@ export const Login = memo(() => {
       username:values.login,
       password:values.password
     })).data
-    setToken(token)
+    setToken(token.access_token)
     router.push('/')
   })
 

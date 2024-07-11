@@ -3,20 +3,21 @@ import { memo } from "react";
 import TaskIcon from "../assets/task-icon.svg";
 
 interface TaskCardProps {
+  name:string
 }
 
-export const TaskCard = memo((props: TaskCardProps) => {
+export const TaskCard = memo(({name}: TaskCardProps) => {
   return (
-    <Box>
-      <Card>
+      <Card style={{height:"100%"}}>
         <Flex gap={"2"}>
-          <TaskIcon />
+          <Box flexGrow={"0"}>
+            <TaskIcon />
+          </Box>
           <Box>
-            <Heading>Курьерские услуги</Heading>
+            <Heading>{name}</Heading>
             <Text>Подробнее</Text>
           </Box>
         </Flex>
       </Card>
-    </Box>
   );
 });

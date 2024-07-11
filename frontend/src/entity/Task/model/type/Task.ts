@@ -1,5 +1,5 @@
-export interface Task {
-    categoryId: number;
+export interface TaskProps {
+    subcategoryId: number;
     props:{
         name: string;
         description: string;

@@ -1,61 +1,54 @@
 "use client"
-import {memo, useEffect, useState} from "react";
-import { BreadCrumbs } from "widget/BreadCrumbs/BreadCrumbs";
+import {memo} from "react";
+import {BreadCrumbs} from "widget/BreadCrumbs/BreadCrumbs";
 import {
-  Box,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  Separator,
-  Text,
+    Box,
+    Container,
+    Flex,
+    Grid,
+    Heading,
+    Separator,
+    Text,
 } from "@radix-ui/themes";
-import { TaskCard } from "./TaskCard";
-import {redirect} from "next/navigation";
-import axios from "axios";
-
-const subItems = [
-  { text: "Услуги пешего курьера", id: 2 },
-  { text: "Услуги курьера на легковом авто", id: 3 },
-  { text: "Купить и доставить", id: 4 },
-  { text: "Срочная доставка", id: 5 },
-  { text: "Доставка продуктов", id: 6 },
-  { text: "Доставка еды из ресторанов", id: 1 },
-];
+import {TaskCard} from "./TaskCard";
+import {useRouter} from "next/navigation";
+import {useSubcategories} from "../model/hooks/useSubcategories";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const SelectCategory = memo(() => {
-  const [categories, setCategories] = useState([])
-  useEffect(()=>{
-    axios.get("http://localhost:9000/categories").then(data => setCategories(data.data))
-  },[])
-  const handlerSelectCategory = (subCategoryId: number) => () => {
-    redirect(`/create-task/${subCategoryId}`);
-  };
-  console.log(categories)
+    const {push} = useRouter();
+    const {subcategories, categoriesList, handlerSelectCategory, isLoading} = useSubcategories()
 
-  return (
-      <Container flexGrow={"1"} pt={"70px"}>
-        <Flex direction={"column"} gap={"8"}>
-          <BreadCrumbs />
-          <Flex direction={"column"}>
-            <Heading>Выберите категорию задания</Heading>
-            <Text>Ищите работу? Просмотр заданий</Text>
-          </Flex>
-          <Grid columns="3" gap="3" rows="3">
-            {categories.map((item, index) => (
-              <TaskCard key={index}/>
-            ))}
-          </Grid>
-        </Flex>
-        <Box>
-          <Heading mb={"6"}>Курьерские услуги</Heading>
-          <Separator size={"4"} />
-        </Box>
-        <Grid columns="3" gap="3" rows="repeat(2, 64px)" pt={"4"}>
-          {subItems.map((el) => (
-            <Text onClick={handlerSelectCategory(el.id)} key={el.id}>{el.text}</Text>
-          ))}
-        </Grid>
-      </Container>
-  );
+    const handlerSelectSubcategory = (subCategoryId: number) => () => {
+        push(`/createTask/step2/${subCategoryId}`);
+    };
+
+    return (
+        <Container flexGrow={"1"} pt={"70px"}>
+            <Flex direction={"column"} gap={"8"}>
+                <BreadCrumbs/>
+                <Flex direction={"column"}>
+                    <Heading>Выберите категорию задания</Heading>
+                    <Text>Ищите работу? Просмотр заданий</Text>
+                </Flex>
+                <Grid columns="3" gap="3" rows="3">
+                    {isLoading ? new Array(10).fill("").map(el => <Skeleton width={300} height={75} />) : categoriesList?.map((category, index) => (
+                        <Box key={index} onClick={handlerSelectCategory(category.id)}>
+                            <TaskCard name={category.name}/>
+                        </Box>
+                    ))}
+                </Grid>
+            </Flex>
+            <Box>
+                <Heading mb={"6"}>Курьерские услуги</Heading>
+                <Separator size={"4"}/>
+            </Box>
+            <Grid columns="3" gap="3" rows="repeat(2, 64px)" pt={"4"}>
+                {subcategories?.map((el) => (
+                    <Text onClick={handlerSelectSubcategory(el.id)} key={el.id}>{el.title}</Text>
+                ))}
+            </Grid>
+        </Container>
+    );
 });

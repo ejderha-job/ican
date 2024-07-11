@@ -15,8 +15,8 @@ export const TasksSlider = (props:Tasks) => {
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
     >
-        {tasks.map((task, index) => <SwiperSlide key={index}>
-            <Task type={"primary"}/>
-        </SwiperSlide>)}
+            {tasks.map((task, index) => <SwiperSlide key={index}>
+                <Task type={"primary"} task={task.props} />
+            </SwiperSlide>)}
     </Swiper>
 }
