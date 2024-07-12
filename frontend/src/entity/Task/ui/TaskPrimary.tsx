@@ -6,7 +6,7 @@ export const TaskPrimary = (props) => {
     const onClick = () => {
         router.push("/task/10");
     }
-    return <Box maxWidth="400px">
+    return <Box maxWidth="400px" onClick={onClick}>
         <Card>
             <Flex direction="column" gap={"1"}>
                 <Flex gap={"4"} align={"center"} justify={"between"}>
@@ -29,7 +29,7 @@ export const TaskPrimary = (props) => {
                 <Separator size={"4"} />
                 <Flex justify={"between"} align={"center"} gap={"4"}>
                     <Strong>{props.price}</Strong>
-                    <Button onClick={onClick}>Подробнее</Button>
+                    <Button>Подробнее</Button>
                 </Flex>
             </Flex>
         </Card>
