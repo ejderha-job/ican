@@ -1,8 +1,8 @@
 "use client"
 import 'swiper/css';
-import { Task } from "../../../entity/Task";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { memo } from 'react';
+import { TaskPrimary } from 'entity/Task/ui/TaskPrimary';
 
 interface Tasks {
     tasks: Array<any>
@@ -17,7 +17,7 @@ export const TasksSlider = memo((props: Tasks) => {
         onSwiper={(swiper) => console.log(swiper)}
     >
         {tasks.map((task, index) => <SwiperSlide key={index}>
-            <Task type={"primary"} task={task.props} />
+            <TaskPrimary {...task.props} />
         </SwiperSlide>)}
     </Swiper>
 })

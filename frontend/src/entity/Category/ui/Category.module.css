@@ -1,0 +1,8 @@
+.Category:hover {
+    background-color: rgb(196, 196, 196);
+    cursor: pointer;
+}
+
+.Category {
+    height: 100%;
+}

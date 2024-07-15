@@ -1,14 +1,14 @@
 "use server"
 import { Flex } from "@radix-ui/themes";
-import {Task} from "../../../entity/Task";
-import axios from "axios";
+import { TaskSecondary } from "entity/Task/ui/TaskSecondary";
 
-export async function TasksList() {
-  const tasks = (await axios.get("http://backend:9000/tasks")).data
+export async function TasksList({ searchParams }) {
+  const response = await fetch(`http://backend:9000/tasks${searchParams ? searchParams : ""}`, { next: { revalidate: 10 } })
+  const tasks = await response.json();
   return (<Flex direction={"column"} gap={"4"}>
-      {tasks.map((task, index) => (
-        <Task type={"secondary"} key={index} task={task.props} />
-      ))}
-    </Flex>
+    {tasks.length && tasks.map((task, index) => (
+      <TaskSecondary key={index} {...task?.props} />
+    ))}
+  </Flex>
   );
 }

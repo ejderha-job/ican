@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, Req, UseGuards} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, UseGuards} from '@nestjs/common';
 import {TasksService} from "./tasks.service";
 import {JwtAuthGuard} from "../guard/jwt-auth.guard";
 import {createTaskDTO} from "./dto/tasks.dto";

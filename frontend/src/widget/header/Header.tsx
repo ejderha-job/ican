@@ -1,6 +1,7 @@
 import { Container, Flex, Link, Text } from "@radix-ui/themes";
 import { Logo } from "../logo/Logo";
 import { Location, Lang, Auth } from "entity";
+import { MoonIcon } from "@radix-ui/react-icons";
 
 interface HeaderProps {
   theme: "light" | "dark";
@@ -18,7 +19,7 @@ export const Header = (props: HeaderProps) => {
           <Link href="/createTask/step1">Создать задание</Link>
           <Link href="/tasks">Найти задание</Link>
           <Auth />
-          <Text>Theme</Text>
+          <MoonIcon />
         </Flex>
       </Container>
     </header>
