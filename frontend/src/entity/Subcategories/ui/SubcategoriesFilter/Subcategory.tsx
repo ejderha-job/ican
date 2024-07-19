@@ -5,6 +5,7 @@ import { useUnit } from "effector-react";
 import { SubcategoriesType } from "entity/Subcategories/model/type/subcategories";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { memo } from "react";
+import update from "./action";
 
 interface ItemProps extends SubcategoriesType {
 }
@@ -27,6 +28,7 @@ export const Item = memo((props: ItemProps) => {
 
   const handlerClick = () => {
     router.push(`${pathname}?IDs=${data}${IDs}`)
+    update()    
   }
 
   return (

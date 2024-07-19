@@ -1,4 +1,4 @@
-import { Avatar, Flex, Separator, Text, Button, Box } from "@radix-ui/themes"
+import { Avatar, Flex, Separator, Text, Button } from "@radix-ui/themes"
 
 export const Profile = () => {
     return <Flex direction={"column"} flexShrink={"0"} justify={"between"} py={"9"}>

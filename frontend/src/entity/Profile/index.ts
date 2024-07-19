@@ -1,1 +1,1 @@
-export {setToken, token} from './model/store'
+export {setToken, token} from '../Auth/store'
