@@ -22,7 +22,7 @@ const SortBy = () => {
   </Flex>
 }
 
-export const Tasks = async () => {
+export const Tasks = async ({tasks}) => {
   const { subcategories } = await getSubcategories()
   return (
     <Flex direction={"column"} gap={"4"} flexGrow={"1"}>
@@ -31,7 +31,7 @@ export const Tasks = async () => {
         <Flex gap={"4"}>
           <Flex direction={"column"} gap={"4"}>
             <SortBy />
-            <TasksList />
+            <TasksList tasks={tasks} />
           </Flex>
           <SubcategoriesFilter subcategories={subcategories} />
         </Flex>

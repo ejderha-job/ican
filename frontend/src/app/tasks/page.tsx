@@ -6,7 +6,14 @@ export interface ServerSideComponentProp {
     searchParams: any;
 }
 
-export default function Page({ searchParams }: ServerSideComponentProp) {
+export const getTasks = async ({ IDs }) => {
+    const response = await fetch(`http://backend:9000/tasks?IDs=${IDs ? IDs : ""}`, { cache: "no-cache" })
+    const tasks = await response.json();
+    return tasks
+}
+
+export default async function Page({ searchParams }: ServerSideComponentProp) {
     subcategoriesAPI.set(searchParams.IDs?.split(","))
-    return <Tasks />
+    const tasks = await getTasks({ IDs: searchParams.IDs })
+    return <Tasks tasks={tasks} />
 }

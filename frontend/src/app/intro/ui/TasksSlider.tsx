@@ -13,8 +13,6 @@ export const TasksSlider = memo((props: Tasks) => {
     return <Swiper
         spaceBetween={50}
         slidesPerView={3}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
     >
         {tasks.map((task, index) => <SwiperSlide key={index}>
             <TaskPrimary {...task.props} />

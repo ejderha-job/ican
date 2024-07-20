@@ -28,7 +28,7 @@ export const Item = memo((props: ItemProps) => {
 
   const handlerClick = () => {
     router.push(`${pathname}?IDs=${data}${IDs}`)
-    update()    
+    update()
   }
 
   return (

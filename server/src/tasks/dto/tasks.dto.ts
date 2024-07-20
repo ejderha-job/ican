@@ -8,3 +8,7 @@ export class taskDTO {
     price: number
     description: string
 }
+
+export class getTaskDTO {
+    subcategoriesIDs?:number[]
+}

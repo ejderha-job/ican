@@ -1,10 +1,10 @@
-import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
-import {InjectRepository} from "@nestjs/typeorm";
-import {Tasks} from "./tasks.entity";
-import {Repository} from "typeorm";
-import {UsersService} from "../users/users.service";
-import {createTaskDTO} from "./dto/tasks.dto";
-import {SubcategoriesService} from "../subcategories/subcategories.service";
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from "@nestjs/typeorm";
+import { Tasks } from "./tasks.entity";
+import { In, Repository } from "typeorm";
+import { UsersService } from "../users/users.service";
+import { createTaskDTO, getTaskDTO } from "./dto/tasks.dto";
+import { SubcategoriesService } from "../subcategories/subcategories.service";
 
 @Injectable()
 export class TasksService {
@@ -15,9 +15,11 @@ export class TasksService {
     ) {
     }
 
-    async getTasks() {
-        const data = await this.tasksRepository.find()
-        return data
+    async getTasks(dto: getTaskDTO) {
+        if (dto.subcategoriesIDs) {
+            return await this.tasksRepository.find({ where: { id: In(dto.subcategoriesIDs) } })
+        }
+        return await this.tasksRepository.find()
     }
 
 
@@ -26,9 +28,9 @@ export class TasksService {
         if (!Subcategory) throw new HttpException('Category not found', HttpStatus.BAD_REQUEST)
         const newTask = new Tasks()
         newTask.props = {
-            name:task.task.name,
-            price:task.task.price,
-            description:task.task.description
+            name: task.task.name,
+            price: task.task.price,
+            description: task.task.description
         }
         newTask.Subcategory = Subcategory
         newTask.user = await this.usersService.findById(userID)
