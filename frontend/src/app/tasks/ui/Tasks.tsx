@@ -1,13 +1,8 @@
+"use client"
 import { Header } from "./Header";
 import { Container, Flex, Text, Select } from "@radix-ui/themes";
 import { TasksList } from "./TasksList";
 import { SubcategoriesFilter } from "entity/Subcategories/ui/SubcategoriesFilter/SubcategoriesFilter";
-
-export const getSubcategories = async () => {
-  const response = await fetch("http://backend:9000/categories", { next: { revalidate: 10 } })
-  const subcategories = await response.json()
-  return { subcategories }
-}
 
 const SortBy = () => {
   return <Flex align={"center"} gap={"4"}>
@@ -22,8 +17,13 @@ const SortBy = () => {
   </Flex>
 }
 
-export const Tasks = async ({tasks}) => {
-  const { subcategories } = await getSubcategories()
+interface TasksProps {
+  tasks: Array<any>
+  subcategories: Array<any>
+}
+
+export const Tasks = ({ tasks, subcategories }:TasksProps) => {
+  console.log("client", {tasks});
   return (
     <Flex direction={"column"} gap={"4"} flexGrow={"1"}>
       <Header />

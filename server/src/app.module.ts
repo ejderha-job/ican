@@ -12,7 +12,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
     imports: [
-        CacheModule.register(),
+        // CacheModule.register(),
         TypeOrmModule.forRoot(dataSource),
         CountriesModule,
         CategoriesModule,
@@ -21,12 +21,12 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         UsersModule,
         SubcategoriesModule,
     ],
-    providers: [
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: CacheInterceptor,
-        },
-    ],
+    // providers: [
+    //     {
+    //         provide: APP_INTERCEPTOR,
+    //         useClass: CacheInterceptor,
+    //     },
+    // ],
 })
 export class AppModule {
 }
