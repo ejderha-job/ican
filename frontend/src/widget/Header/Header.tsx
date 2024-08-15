@@ -1,5 +1,5 @@
 import { Container, Flex, Link, Text } from "@radix-ui/themes";
-import { Logo } from "../logo/Logo";
+import { Logo } from "../Logo/Logo";
 import { Location, Lang, Auth } from "entity";
 import { MoonIcon } from "@radix-ui/react-icons";
 

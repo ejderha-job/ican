@@ -1,0 +1,1 @@
+export { SubcategoriesFilter } from './ui/SubcategoriesFilter/SubcategoriesFilter'

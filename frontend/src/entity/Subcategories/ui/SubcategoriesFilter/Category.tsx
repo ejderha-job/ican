@@ -1,5 +1,5 @@
 import { Box, ChevronDownIcon, Flex } from "@radix-ui/themes";
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Item } from "./Subcategory";
 import { SubcategoriesType } from "entity/Subcategories/model/type/subcategories";
 
@@ -11,9 +11,11 @@ interface CategoryProps {
 export const Category = memo((props: CategoryProps) => {
   const { items, title } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const collapse = () => {
+  
+  const collapse = useCallback(() => {
     setIsOpen((prev) => !prev);
-  };
+  },[])
+
   return (
     <Flex direction={"column"}>
       <Flex gap={"4"} align={"center"}>

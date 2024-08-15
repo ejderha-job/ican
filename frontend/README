@@ -1,0 +1,19 @@
+App
+Widget
+    - Bread crumbs
+    - Footer
+    - Header
+    - Logo
+    - Search
+Feature
+Entity
+    - Auth
+    - Category
+    - Feedback
+    - Lang
+    - Location
+    - Profile
+    - Subcategories
+    - Task
+Shared
+Storybook

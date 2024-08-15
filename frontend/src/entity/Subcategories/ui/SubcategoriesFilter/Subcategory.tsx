@@ -1,34 +1,48 @@
 "use client"
 import { Checkbox, Flex, Text } from "@radix-ui/themes";
-import { $subcategories } from "app/tasks/model/subcategories";
-import { useUnit } from "effector-react";
+import { useIsChecked } from "entity/Subcategories/hooks/useIsChecked";
 import { SubcategoriesType } from "entity/Subcategories/model/type/subcategories";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { memo } from "react";
-import update from "./action";
 
 interface ItemProps extends SubcategoriesType {
 }
 
-const useIsChecked = (IDs: number[]) => {
-  const [subcategories] = useUnit([$subcategories])
-
-  const isChecked = IDs.every(el => subcategories.includes(el))
-
-  return { isChecked }
+// вернет значения из arr1 которых нет в arr2
+// удалит из arr2 те значения которые есть в arr1
+export const filter = (arr1: number[], arr2: number[]) => {
+  if (!arr1.length) {
+    return arr2
+  }
+  const add:number[] = []
+  const del:number[] = []
+  arr1.forEach(id => {
+    if (arr2.includes(id)) {
+      del.push(id)
+    } else {
+      add.push(id)
+    }
+  })
+  const copy = arr2.filter(id => !del.includes(id))
+  return [...copy, ...add]
 }
 
 export const Item = memo((props: ItemProps) => {
   const { title, IDs } = props
   const { isChecked } = useIsChecked(IDs)
   const router = useRouter()
-  const pathname = usePathname()
-  const params = useSearchParams()
-  const data = params.get("IDs") ? `${params.get("IDs")},` : ""
+  const searchParams = useSearchParams()
+
+  const queryParams = searchParams.get('IDs')
 
   const handlerClick = () => {
-    router.push(`${pathname}?IDs=${data}${IDs}`)
-    update()
+    if (queryParams) {
+      // id которые есть в query параметрах []number
+      const list = queryParams.split(",").map(el => Number(el))
+      const res = filter(IDs, list)
+      router.push(`http://localhost:3000/tasks?IDs=${res}`)
+    }
+    router.refresh()
   }
 
   return (

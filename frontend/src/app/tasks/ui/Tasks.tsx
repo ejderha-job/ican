@@ -1,29 +1,19 @@
 "use client"
 import { Header } from "./Header";
-import { Container, Flex, Text, Select } from "@radix-ui/themes";
+import { Container, Flex } from "@radix-ui/themes";
 import { TasksList } from "./TasksList";
-import { SubcategoriesFilter } from "entity/Subcategories/ui/SubcategoriesFilter/SubcategoriesFilter";
-
-const SortBy = () => {
-  return <Flex align={"center"} gap={"4"}>
-    <Text>Сортировать по:</Text>
-    <Select.Root defaultValue="apple">
-      <Select.Trigger />
-      <Select.Content>
-        <Select.Item value="orange">Orange</Select.Item>
-        <Select.Item value="apple">Apple</Select.Item>
-      </Select.Content>
-    </Select.Root>
-  </Flex>
-}
+import { SubcategoriesFilter } from "entity/Subcategories";
+import { SortBy } from "./SortBy";
+import { putSubcategories } from "../model/subcategories";
 
 interface TasksProps {
   tasks: Array<any>
   subcategories: Array<any>
+  IDs: number[]
 }
 
-export const Tasks = ({ tasks, subcategories }:TasksProps) => {
-  console.log("client", {tasks});
+export const Tasks = ({ tasks, subcategories, IDs }:TasksProps) => {
+  putSubcategories(IDs)
   return (
     <Flex direction={"column"} gap={"4"} flexGrow={"1"}>
       <Header />

@@ -5,7 +5,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "app/login/Login";
 import { Registr } from "app/registr/ui/Registr";
 import { default as Intro } from "app/page";
-import { Header } from "widget/header/Header";
+import { Header } from "widget/Header/Header";
 import ErrorPage from "./ErrorPage";
 import { SelectCategory } from "app/createTask/step1";
 import { Footer } from "widget/Footer/Footer";

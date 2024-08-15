@@ -1,9 +1,7 @@
-import { createApi, createStore } from "effector";
+"use client"
 
-export const $subcategories = createStore<Number[]>([])
+import { createEvent, restore } from "effector";
 
-export const subcategoriesAPI = createApi($subcategories, {
-    addID: (state, ID: number) => ([...state, ID]),
-    removeID: (state, ID: number) => (state.filter(el => el !== ID)),
-    set: (state, IDs: number[]) => ([...state, ...IDs])
-});
+export const putSubcategories = createEvent<number[]>()
+
+export const $subcategories = restore(putSubcategories,[])
