@@ -1,5 +1,5 @@
-FROM node:alpine
+FROM oven/bun:latest
 WORKDIR /app
 COPY . .
-RUN npm i
-CMD ["npm", "run", "dev"]
+RUN bun i
+CMD ["bun", "run", "dev"]

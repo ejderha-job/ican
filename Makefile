@@ -3,6 +3,6 @@ up:
 down:
 	docker compose down
 clear:
-	docker image rm $(docker image list -q)
+	docker image rm $$(docker image list -q)
 lint:
 	cd frontend && bun lint
